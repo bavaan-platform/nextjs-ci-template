@@ -22,13 +22,6 @@ jobs:
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
             production-nextjs-ci-template-bavaan-platform.vercel.app
-  smoke-test:
-    runs-on: ubuntu-latest
-    # let's make sure our tests pass on Chrome browser
-    name: Smoke Test
-    steps:
-      if: github.event.pull_request.merged == true
-      - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
           browser: chrome
