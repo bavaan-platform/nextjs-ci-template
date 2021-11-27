@@ -3,6 +3,8 @@ on: [push]
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ github.event.number }}
     steps:
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v20.0.0
