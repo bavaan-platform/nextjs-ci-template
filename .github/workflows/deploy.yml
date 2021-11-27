@@ -14,5 +14,5 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
-            staging.storefront.bavaan-platform.vercel.app
-            pr-{{PR_NUMBER}}.storefront.bavaan-platform.vercel.app
+            nextjs-ci-template-bavaan-platform.vercel.app
+            pr-{{PR_NUMBER}}.nextjs-ci-template-bavaan-platform.vercel.app
