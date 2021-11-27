@@ -4,10 +4,7 @@ on:
   # but only for the main branch
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - staging
   # Also trigger on page_build, as well as release created events
   page_build:
   release:
