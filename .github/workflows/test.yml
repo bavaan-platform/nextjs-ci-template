@@ -13,8 +13,7 @@ jobs:
           browser: chrome
           headless: true
           command: |
-            npm install
-            npm run e2e:headless
+            npm install && npm run e2e:headless
       - uses: actions/upload-artifact@v2
         with:
           name: screenshots-in-headless-chrome
