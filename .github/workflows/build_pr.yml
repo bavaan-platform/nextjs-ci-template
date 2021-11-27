@@ -22,7 +22,7 @@ jobs:
           browser: chrome
           headless: true
           command: |
-            npm run cypress run --config "baseUrl=https://pr$PR_NUMBER-nextjs-ci-template-bavaan-platform.vercel.app/"
+            npm run cypress run --config "baseUrl=https://pr${{ github.event.number }}-nextjs-ci-template-bavaan-platform.vercel.app/"
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
