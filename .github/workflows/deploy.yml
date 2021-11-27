@@ -1,5 +1,5 @@
-name: Deploy Website
-on: [push]
+name: Deploy PR Website
+on: [pull_request]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,5 +16,4 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
-            staging-nextjs-ci-template-bavaan-platform.vercel.app
-            pr-{{PR_NUMBER}}-nextjs-ci-template-bavaan-platform.vercel.app
+            pr{{PR_NUMBER}}-nextjs-ci-template-bavaan-platform.vercel.app
