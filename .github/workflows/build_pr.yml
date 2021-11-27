@@ -22,6 +22,8 @@ jobs:
           browser: chrome
           headless: true
           config: pageLoadTimeout=100000,baseUrl=https://pr2-nextjs-ci-template-bavaan-platform.vercel.app/
+          command: |
+            npm run cypress:headless
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
