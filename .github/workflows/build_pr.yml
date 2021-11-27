@@ -1,4 +1,4 @@
-name: Deploy PR Website
+name: Build PR Website
 on: [pull_request]
 jobs:
   deploy:
