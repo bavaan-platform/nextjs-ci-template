@@ -45,3 +45,26 @@ jobs:
         with:
           name: video-in-headless-firefox
           path: cypress/videos
+  e2e-edge:
+    runs-on: windows-latest
+    # let's make sure our tests pass on Chrome browser
+    name: E2E on Edge
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./
+          browser: edge
+          headless: true
+          command: |
+            npm run e2e:headless
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots-in-headless-edge
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: video-in-headless-edge
+          path: cypress/videos

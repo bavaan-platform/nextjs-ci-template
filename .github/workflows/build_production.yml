@@ -36,10 +36,12 @@ jobs:
           headless: true
           config: pageLoadTimeout=100000,baseUrl=https://production-nextjs-ci-template-bavaan-platform.vercel.app/
       - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: screenshots-in-headless-chrome
           path: cypress/screenshots
       - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: video-in-headless-chrome
           path: cypress/videos
