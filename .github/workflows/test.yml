@@ -1,0 +1,14 @@
+name: E2E on Chrome
+on: [push]
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    # let's make sure our tests pass on Chrome browser
+    name: E2E on Chrome
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          command: |
+            npm install
+            npm run e2e:headless
