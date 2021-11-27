@@ -10,9 +10,8 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          headless: true
           command: |
-            npm run e2e:headless
+            npm run e2e
       - uses: actions/upload-artifact@v2
         with:
           name: screenshots-in-headless-chrome
@@ -30,9 +29,8 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           browser: firefox
-          headless: true
           command: |
-            npm run e2e:headless
+            npm run e2e
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
@@ -52,9 +50,8 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           browser: edge
-          headless: true
           command: |
-            npm run e2e:headless
+            npm run e2e
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
