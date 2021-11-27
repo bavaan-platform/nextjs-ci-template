@@ -10,5 +10,6 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           command: |
+            ls -l
             npm install
             npm run e2e:headless
