@@ -31,7 +31,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
-          working-directory: ./
           browser: chrome
           headless: true
           config: pageLoadTimeout=100000,baseUrl=https://production-nextjs-ci-template-bavaan-platform.vercel.app/

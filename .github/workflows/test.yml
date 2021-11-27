@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
-          working-directory: ./
           browser: chrome
           headless: true
           command: |
@@ -30,7 +29,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
-          working-directory: ./
           browser: firefox
           headless: true
           command: |
@@ -53,7 +51,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
-          working-directory: ./
           browser: edge
           headless: true
           command: |
