@@ -21,7 +21,7 @@ jobs:
         with:
           browser: chrome
           headless: true
-          config: pageLoadTimeout=100000,baseUrl=https://pr{{PR_NUMBER}}-nextjs-ci-template-bavaan-platform.vercel.app/
+          config: pageLoadTimeout=100000,baseUrl=https://pr2-nextjs-ci-template-bavaan-platform.vercel.app/
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
