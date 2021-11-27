@@ -36,10 +36,12 @@ jobs:
           command: |
             npm run e2e:headless
       - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: screenshots-in-headless-firefox
           path: cypress/screenshots
       - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: video-in-headless-firefox
           path: cypress/videos

@@ -1,21 +1,16 @@
-name: Build Production Website
+name: Build Staging Website
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - staging
-  # Also trigger on page_build, as well as release created events
-  page_build:
-  release:
-    types: # This configuration does not affect the page_build event above
-      - created
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
+      if: github.event.pull_request.merged == true
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v20.0.0
         with:
@@ -27,3 +22,25 @@ jobs:
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
             staging-nextjs-ci-template-bavaan-platform.vercel.app
+  smoke-test:
+    runs-on: ubuntu-latest
+    # let's make sure our tests pass on Chrome browser
+    name: Smoke Test
+    steps:
+      if: github.event.pull_request.merged == true
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./
+          browser: chrome
+          headless: true
+          command: |
+            npm run e2e:headless
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots-in-headless-chrome
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        with:
+          name: video-in-headless-chrome
+          path: cypress/videos
