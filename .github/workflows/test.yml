@@ -9,7 +9,17 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
+          working-directory: ./
+          browser: chrome
+          headless: true
           command: |
-            ls -l
             npm install
             npm run e2e:headless
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots-in-headless-chrome
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        with:
+          name: video-in-headless-chrome
+          path: cypress/videos
