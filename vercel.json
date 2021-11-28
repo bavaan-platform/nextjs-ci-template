@@ -4,6 +4,6 @@
   "scope": "bavaan-platform",
   "public": false,
   "github": {
-    "silent": false
+    "silent": true
   }
 }
