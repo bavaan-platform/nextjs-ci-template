@@ -17,6 +17,8 @@ jobs:
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
             pr{{PR_NUMBER}}-nextjs-ci-template-bavaan-platform.vercel.app
+      - name: Config Cypress BaseUrl
+        run: cat examples/custom-command/results.json
       - uses: cypress-io/github-action@v2
         with:
           browser: chrome
