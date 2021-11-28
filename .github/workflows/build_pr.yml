@@ -18,11 +18,14 @@ jobs:
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
             pr{{PR_NUMBER}}-nextjs-ci-template-bavaan-platform.vercel.app
+      - run: echo '{"baseUrl":"https://pr${{ github.event.number }}-nextjs-ci-template-bavaan-platform.vercel.app/"}' | tee cypress.json > /dev/null
       - uses: cypress-io/github-action@v2
         with:
           browser: chrome
           headless: true
           config: pageLoadTimeout=100000,baseUrl=https://pr${{ github.event.number }}-nextjs-ci-template-bavaan-platform.vercel.app/
+          command: |
+            npm run e2e:headless
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
