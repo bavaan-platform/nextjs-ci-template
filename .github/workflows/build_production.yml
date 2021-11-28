@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PR_NUMBER: ${{ github.event.number }}
+      CYPRESS_BASE_URL: https://production-nextjs-ci-template-bavaan-platform.vercel.app/
     steps:
       if: github.event.pull_request.merged == true
       - uses: actions/checkout@v2
@@ -26,7 +27,6 @@ jobs:
         with:
           browser: chrome
           headless: true
-          config: pageLoadTimeout=100000,baseUrl=https://production-nextjs-ci-template-bavaan-platform.vercel.app/
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
