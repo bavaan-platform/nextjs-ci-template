@@ -1,21 +1,17 @@
 name: Build Production Website
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - staging
-  # Also trigger on page_build, as well as release created events
-  page_build:
-  release:
-    types: # This configuration does not affect the page_build event above
-      - created
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
       PR_NUMBER: ${{ github.event.number }}
+      CYPRESS_BASE_URL: https://staging-nextjs-ci-template-bavaan-platform.vercel.app/
     steps:
+      if: github.event.pull_request.merged == true
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v20.0.0
         with:
@@ -27,3 +23,17 @@ jobs:
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
             staging-nextjs-ci-template-bavaan-platform.vercel.app
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots-in-headless-chrome
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: video-in-headless-chrome
+          path: cypress/videos

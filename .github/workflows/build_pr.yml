@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PR_NUMBER: ${{ github.event.number }}
+      CYPRESS_BASE_URL: https://pr${{ github.event.number }}-nextjs-ci-template-bavaan-platform.vercel.app/
     steps:
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v20.0.0
@@ -17,3 +18,17 @@ jobs:
           working-directory: ./ #Your Working Directory, Optional
           alias-domains: | #Optional
             pr{{PR_NUMBER}}-nextjs-ci-template-bavaan-platform.vercel.app
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots-in-headless-chrome
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: video-in-headless-chrome
+          path: cypress/videos
